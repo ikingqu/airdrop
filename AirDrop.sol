@@ -206,7 +206,7 @@ contract AirDrop is Ownable {
   function withdrawToken(address _token_address, address _receiver) public onlyOwner returns (bool) {
     ERC20 token = ERC20(_token_address);
     require(_receiver != address(0) && token.balanceOf(this) > 0);
-    token.transfer(_receiver, token.balanceOf(this));
+    require(token.transfer(_receiver, token.balanceOf(this)));
     return true;
   }
 
